@@ -14,6 +14,12 @@ class UserController extends Controller
         return response()->json($users, 200);
     }
 
+    public function index()
+    {
+        $users = User::all();
+        return response()->json($users, 200);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
