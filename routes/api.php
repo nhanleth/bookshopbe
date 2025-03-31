@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,10 +31,13 @@ Route::get('/get/products/{id}', [ProductController::class, 'getProductById']);
 Route::get('/get/categories/{id}', [CategoryController::class, 'getCategoryById']);
 Route::get('/get/orders', [OrderController::class, 'getOrders']);
 Route::get('/get/orders/{id}', [OrderController::class, 'getOrderById']);
+Route::get('/get/carts', [CartController::class, 'getCarts']);
+Route::get('/get/carts/{id}', [CartController::class, 'getCartById']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('products', ProductController::class);
     Route::apiResource('users', UserController::class);
     Route::apiResource('orders', OrderController::class);
+    Route::apiResource('carts', CartController::class);
 });
