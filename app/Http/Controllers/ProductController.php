@@ -89,6 +89,11 @@ class ProductController extends Controller
     public function getProductById($id)
     {
         $product = Product::findOrFail($id);
-        return response()->json($product, 200);
+        $product->image = Storage::url($product->image);
+        $productCategoryName = $product->category->name;
+        return response()->json([
+            'product' => $product,
+            'category_name' => $productCategoryName
+        ], 200);
     }
 }
