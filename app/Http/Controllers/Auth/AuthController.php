@@ -26,10 +26,10 @@ class AuthController extends Controller
             $user = Auth::user();
             $token = $user->createToken('API Token')->plainTextToken;
 
-            return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $token, 'role' => $user->role], 200);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json(['error' => 'Email or password is incorrect'], 401);
     }
 
     // Function to handle user registration
