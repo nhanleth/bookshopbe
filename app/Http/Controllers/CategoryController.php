@@ -47,4 +47,10 @@ class CategoryController extends Controller
 
         return response()->json(null, 204);
     }
+
+    public function getCategories()
+    {
+        $categories = Category::all();
+        return response()->json($categories, 200);
+    }
 }
