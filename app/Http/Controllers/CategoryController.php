@@ -53,4 +53,10 @@ class CategoryController extends Controller
         $categories = Category::all();
         return response()->json($categories, 200);
     }
+
+    public function getCategoryById($id)
+    {
+        $category = Category::findOrFail($id);
+        return response()->json($category, 200);
+    }
 }

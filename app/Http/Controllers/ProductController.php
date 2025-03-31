@@ -33,7 +33,7 @@ class ProductController extends Controller
         // Handle image upload
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');
-            $data['image'] = $path; 
+            $data['image'] = $path;
         }
 
         $product = Product::create($data);
@@ -84,5 +84,11 @@ class ProductController extends Controller
     {
         $products = Product::all();
         return response()->json($products, 200);
+    }
+
+    public function getProductById($id)
+    {
+        $product = Product::findOrFail($id);
+        return response()->json($product, 200);
     }
 }

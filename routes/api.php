@@ -25,6 +25,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/get/categories', [CategoryController::class, 'getCategories']);
 Route::get('/get/products', [ProductController::class, 'getProducts']);
+Route::get('/get/products/{id}', [ProductController::class, 'getProductById']);
+Route::get('/get/categories/{id}', [CategoryController::class, 'getCategoryById']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('categories', CategoryController::class);
