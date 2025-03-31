@@ -12,8 +12,12 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
+            $table->foreignId('category_id')->constrained('categories');
             $table->text('description')->nullable();
+            $table->string('publish_year');
+            $table->string('isbn');
             $table->decimal('price', 10, 2);
+            $table->string('image')->nullable();
             $table->integer('stock');
             $table->timestamps();
         });

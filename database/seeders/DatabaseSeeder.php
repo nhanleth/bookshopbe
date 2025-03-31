@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Category;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
         User::create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
@@ -27,5 +29,26 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('12345678'),
             'role' => 'user',
         ]);
+
+        $categories = [
+            'Fiction',
+            'Non-Fiction',
+            'Science Fiction',
+            'Fantasy',
+            'Mystery',
+            'Romance',
+            'Thriller',
+            'Horror',
+            'Biography',
+            'History',
+            'Travel',
+            'Cooking',
+        ];
+
+        foreach ($categories as $category) {
+            Category::create([
+                'name' => $category,
+            ]);
+        }
     }
 }
