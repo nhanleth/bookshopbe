@@ -26,7 +26,7 @@ class AuthController extends Controller
             $user = Auth::user();
             $token = $user->createToken('API Token')->plainTextToken;
 
-            return response()->json(['token' => $token, 'role' => $user->role, 'name' => $user->name], 200);
+            return response()->json(['token' => $token, 'role' => $user->role, 'name' => $user->name, 'id' => $user->id], 200);
         }
 
         return response()->json(['error' => 'Email or password is incorrect.'], 401);
