@@ -26,6 +26,19 @@ class CartController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
+        // Check if the product already exists in the user's cart
+        $cart = Cart::where('user_id', $request->user_id)
+                    ->where('product_id', $request->product_id)
+                    ->first();
+
+        if ($cart) {
+            // If it exists, update the quantity
+            $cart->quantity += $request->quantity;
+            $cart->save();
+            return response()->json($cart, 200);
+        }
+
+        // If it doesn't exist, create a new cart entry
         $cart = Cart::create($request->all());
         return response()->json($cart, 201);
     }
@@ -34,7 +47,7 @@ class CartController extends Controller
     {
         $cart = Cart::findOrFail($id);
         return response()->json($cart, 200);
-        }
+    }
 
     public function update(Request $request, $id)
     {
