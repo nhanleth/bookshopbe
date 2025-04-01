@@ -28,12 +28,11 @@ class CartController extends Controller
 
         // Check if the product already exists in the user's cart
         $cart = Cart::where('user_id', $request->user_id)
-                    ->where('product_id', $request->product_id)
-                    ->first();
+            ->where('product_id', $request->product_id)
+            ->first();
 
         if ($cart) {
-            // If it exists, update the quantity
-            $cart->quantity += $request->quantity;
+            $cart->quantity += 1;
             $cart->save();
             return response()->json($cart, 200);
         }
