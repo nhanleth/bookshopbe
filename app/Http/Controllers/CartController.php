@@ -26,7 +26,6 @@ class CartController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // Check if the product already exists in the user's cart
         $cart = Cart::where('user_id', $request->user_id)
             ->where('product_id', $request->product_id)
             ->first();
@@ -83,6 +82,22 @@ class CartController extends Controller
         $cart = Cart::findOrFail($id);
         $cart->product = $cart->product;
         $cart->user = $cart->user;
+        return response()->json($cart, 200);
+    }
+
+    public function minusCart($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->quantity -= 1;
+        $cart->save();
+        return response()->json($cart, 200);
+    }
+
+    public function plusCart($id)
+    {
+        $cart = Cart::findOrFail($id);
+        $cart->quantity += 1;
+        $cart->save();
         return response()->json($cart, 200);
     }
 }

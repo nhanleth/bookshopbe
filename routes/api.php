@@ -40,4 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('users', UserController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('carts', CartController::class);
+    Route::post('/minus/cart/{id}', [CartController::class, 'minusCart']);
+    Route::post('/plus/cart/{id}', [CartController::class, 'plusCart']);
 });
