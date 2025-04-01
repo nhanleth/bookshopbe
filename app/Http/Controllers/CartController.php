@@ -31,7 +31,7 @@ class CartController extends Controller
             ->first();
 
         if ($cart) {
-            $cart->quantity += 1;
+            $cart->quantity = $cart->quantity + 1;
             $cart->save();
             return response()->json($cart, 200);
         }
